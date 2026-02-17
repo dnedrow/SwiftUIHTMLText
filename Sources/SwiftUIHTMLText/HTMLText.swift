@@ -1,0 +1,2 @@
+import SwiftUI
+public struct HTMLText: View { public let html: String; public var linkColor: Color; public var onOpenURL: ((URL) -> Void)?; public init(html: String, linkColor: Color = .accentColor, onOpenURL: ((URL) -> Void)? = nil) { self.html = html; self.linkColor = linkColor; self.onOpenURL = onOpenURL } public var body: some View { Text(html: html).environment(\.openURL, OpenURLAction { url in if let onOpenURL { onOpenURL(url); return .handled }; return .systemAction }).tint(linkColor) } }

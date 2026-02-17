@@ -1,0 +1,2 @@
+import SwiftUI
+public extension Text { init(html htmlString: String, defaultFont: PlatformFont = { #if canImport(UIKit) PlatformFont.preferredFont(forTextStyle: .body) #else PlatformFont.systemFont(ofSize: PlatformFont.systemFontSize) #endif }(), defaultColor: PlatformColor = { #if canImport(UIKit) PlatformColor.label #else PlatformColor.labelColor #endif }()) { if let attributed = try? AttributedString(html: htmlString, defaultFont: defaultFont, defaultColor: defaultColor) { self = Text(attributed) } else { self = Text(htmlString) } } }

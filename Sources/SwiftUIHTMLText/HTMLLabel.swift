@@ -1,0 +1,2 @@
+import SwiftUI
+public enum HTMLRenderer { case swiftUI #if canImport(UIKit) case uiKit #endif } public struct HTMLLabel: View { let html: String; var renderer: HTMLRenderer; var onOpenURL: ((URL) -> Void)?; public init(html: String, renderer: HTMLRenderer = .swiftUI, onOpenURL: ((URL) -> Void)? = nil) { self.html = html; self.renderer = renderer; self.onOpenURL = onOpenURL } public var body: some View { switch renderer { case .swiftUI: HTMLText(html: html, onOpenURL: onOpenURL) #if canImport(UIKit) case .uiKit: HTMLTextView(html: html, onOpenURL: onOpenURL) #endif } } }
